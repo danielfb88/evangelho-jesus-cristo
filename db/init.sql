@@ -1,0 +1,1 @@
+CREATE DATABASE ejc_db;

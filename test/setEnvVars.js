@@ -1,0 +1,12 @@
+process.env.JWT_SECRET = '123';
+process.env.SENDGRID_API_KEY = 'SG.api_key';
+process.env.SENDGRID_FROM_EMAIL = 'test@mail.com';
+process.env.ZENVIA_API_KEY = 'api_key';
+process.env.ZENVIA_API_FROM_PHONE = '111';
+process.env.PROMONT_API_BASE_URL = 'api_key';
+process.env.PROMONT_API_USERNAME = 'user';
+process.env.PROMONT_API_PASSWORD = 'pass';
+process.env.AWS_BUCKET_NAME = 'bucket-name';
+process.env.AWS_ACCESS_KEY = '1234_aws_access_key';
+process.env.AWS_ACCESS_SECRET = '1234_aws_acess_secret';
+process.env.AWS_REGION = 'sa-east-1';

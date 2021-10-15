@@ -1,0 +1,46 @@
+version: '3.7'
+services:
+  db:
+    container_name: 'ejc-db'
+    build: './db'
+    restart: always
+    volumes:
+      - 'postgres_data:/data'
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      DATABASE_DB: ejc_db
+    networks:
+      - ejc-back-tier
+    healthcheck:
+      test: pg_isready -U postgres -h 127.0.0.1
+      interval: 5s
+  api:
+    image: node:14
+    container_name: ejc-api
+    working_dir: '/app'
+    command: ./start.sh
+    environment:
+      - STAGE=dev
+    volumes:
+      - .:/app:rw
+    ports:
+      - '3000:3000'
+      - '9229:9229'
+    depends_on:
+      - 'db'
+    networks:
+      - ejc-back-tier
+
+volumes:
+  postgres_data: {}
+
+networks:
+  ejc-back-tier:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: '172.50.0.0/28'
